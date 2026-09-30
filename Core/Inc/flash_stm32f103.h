@@ -11,6 +11,10 @@
 #include <string.h>
 #include <stdint.h>
 
+
+
+#ifndef FLASH_ACR
+
 #define FLASH_ACR 				(*(volatile uint32_t *)0x40022000UL)
 #define FLASH_ACR_LATENCY_Pos 	0
 #define FLASH_ACR_LATENCY_Msk   (0x7UL << FLASH_ACR_LATENCY_Pos)
@@ -63,6 +67,8 @@
 
 #define FLASH_WRPR 				(*(volatile uint32_t *)0x40022020UL)
 
+#endif
+
 
 
 uint32_t Flash_ErasePage(uint32_t addr);
@@ -74,8 +80,5 @@ uint32_t Flash_ReadWord(uint32_t addr);
 uint32_t Flash_WriteByte(uint32_t addr, uint8_t data);
 uint32_t Flash_WriteHlfWord(uint32_t addr, uint16_t data);
 uint32_t Flash_WriteWord(uint32_t addr, uint32_t data);
-
-void Flash_Read_Buf(uint32_t addr, uint32_t *buf, uint32_t n_words);
-void Flash_Write_Buf(uint32_t addr, uint32_t *buf, uint32_t n_words);
 
 #endif /* INC_FLASH_STM32F103_H_ */

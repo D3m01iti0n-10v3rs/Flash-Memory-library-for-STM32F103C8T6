@@ -1,0 +1,12 @@
+../Core/Src/flash_stm32f103.c:10:20:Flash_WriteKey	4	static
+../Core/Src/flash_stm32f103.c:15:20:Flash_ErrorHandler	4	static
+../Core/Src/flash_stm32f103.c:21:20:Flash_Begin	8	static
+../Core/Src/flash_stm32f103.c:27:20:Flash_End	4	static
+../Core/Src/flash_stm32f103.c:33:24:Flash_ProgramHlfWord	16	static
+../Core/Src/flash_stm32f103.c:40:10:Flash_ErasePage	16	static
+../Core/Src/flash_stm32f103.c:63:9:Flash_ReadByte	16	static
+../Core/Src/flash_stm32f103.c:67:10:Flash_ReadHlfWord	16	static
+../Core/Src/flash_stm32f103.c:71:10:Flash_ReadWord	16	static
+../Core/Src/flash_stm32f103.c:75:10:Flash_WriteByte	24	static
+../Core/Src/flash_stm32f103.c:81:10:Flash_WriteHlfWord	24	static
+../Core/Src/flash_stm32f103.c:88:10:Flash_WriteWord	24	static
