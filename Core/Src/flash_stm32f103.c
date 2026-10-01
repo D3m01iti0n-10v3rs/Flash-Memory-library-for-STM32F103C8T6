@@ -92,3 +92,67 @@ uint32_t Flash_WriteWord(uint32_t addr, uint32_t data){
     Flash_End();
     return ok;
 }
+
+// buffer read/write =================================================================
+
+void Flash_ReadByte_Buf(uint32_t addr, uint8_t *buf, uint32_t n_bytes){
+    memcpy(buf, (const uint8_t *)addr, n_bytes * sizeof(uint8_t));
+}
+
+void Flash_ReadHlfWord_Buf(uint32_t addr, uint16_t *buf, uint32_t n_hlfwords){
+    memcpy(buf, (const uint16_t *)addr, n_hlfwords * sizeof(uint16_t));
+}
+
+void Flash_ReadWord_Buf(uint32_t addr, uint32_t *buf, uint32_t n_words){
+    memcpy(buf, (const uint32_t *)addr, n_words * sizeof(uint32_t));
+}
+
+uint32_t Flash_WriteByte_Buf(uint32_t addr, const uint8_t *buf, uint32_t n_bytes){
+    uint32_t ok = 1;
+    uint32_t i = 0;
+
+    Flash_Begin();
+
+    if ((addr & 1) && n_bytes){
+        ok = Flash_ProgramHlfWord(addr & ~1UL, (uint16_t)((buf[0] << 8) | 0xFF));
+        i = 1;
+    }
+
+    for (; ok && (i + 1) < n_bytes; i += 2){
+        ok = Flash_ProgramHlfWord(addr + i, (uint16_t)(buf[i] | (buf[i + 1] << 8)));
+    }
+
+    if (ok && i < n_bytes) ok = Flash_ProgramHlfWord(addr + i, (uint16_t)(0xFF00 | buf[i]));
+
+    Flash_End();
+    return ok;
+}
+
+uint32_t Flash_WriteHlfWord_Buf(uint32_t addr, const uint16_t *buf, uint32_t n_hlfwords){
+	Flash_Begin();
+
+	for (uint32_t i = 0; i < n_hlfwords; i++){
+		if (!Flash_ProgramHlfWord(addr + i * 2, *(buf + i))){
+			Flash_End();
+			return 0;
+		}
+	}
+
+	Flash_End();
+	return 1;
+}
+
+uint32_t Flash_WriteWord_Buf(uint32_t addr, const uint32_t *buf, uint32_t n_words){
+	Flash_Begin();
+
+	for (uint32_t i = 0; i < n_words; i++){
+		if (!(Flash_ProgramHlfWord(addr + i * 4, (uint16_t)(*(buf + i) & 0xFFFF))
+               && Flash_ProgramHlfWord((addr + i * 4) + 2, (uint16_t)(*(buf + i) >> 16)))){
+			Flash_End();
+			return 0;
+		}
+	}
+
+	Flash_End();
+	return 1;
+}

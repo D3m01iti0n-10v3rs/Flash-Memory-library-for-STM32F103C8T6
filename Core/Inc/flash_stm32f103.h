@@ -81,4 +81,12 @@ uint32_t Flash_WriteByte(uint32_t addr, uint8_t data);
 uint32_t Flash_WriteHlfWord(uint32_t addr, uint16_t data);
 uint32_t Flash_WriteWord(uint32_t addr, uint32_t data);
 
+void Flash_ReadByte_Buf(uint32_t addr, uint8_t *buf, uint32_t n_bytes);
+void Flash_ReadHlfWord_Buf(uint32_t addr, uint16_t *buf, uint32_t n_hlfwords);
+void Flash_ReadWord_Buf(uint32_t addr, uint32_t *buf, uint32_t n_words);
+
+uint32_t Flash_WriteByte_Buf(uint32_t addr, const uint8_t *buf, uint32_t n_bytes);
+uint32_t Flash_WriteHlfWord_Buf(uint32_t addr, const uint16_t *buf, uint32_t n_hlfwords);
+uint32_t Flash_WriteWord_Buf(uint32_t addr, const uint32_t *buf, uint32_t n_words);
+
 #endif /* INC_FLASH_STM32F103_H_ */

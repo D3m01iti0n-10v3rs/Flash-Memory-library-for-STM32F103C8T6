@@ -10,3 +10,9 @@
 ../Core/Src/flash_stm32f103.c:75:10:Flash_WriteByte	24	static
 ../Core/Src/flash_stm32f103.c:81:10:Flash_WriteHlfWord	24	static
 ../Core/Src/flash_stm32f103.c:88:10:Flash_WriteWord	24	static
+../Core/Src/flash_stm32f103.c:98:6:Flash_ReadByte_Buf	24	static
+../Core/Src/flash_stm32f103.c:102:6:Flash_ReadHlfWord_Buf	24	static
+../Core/Src/flash_stm32f103.c:106:6:Flash_ReadWord_Buf	24	static
+../Core/Src/flash_stm32f103.c:110:10:Flash_WriteByte_Buf	32	static
+../Core/Src/flash_stm32f103.c:131:10:Flash_WriteHlfWord_Buf	32	static
+../Core/Src/flash_stm32f103.c:145:10:Flash_WriteWord_Buf	32	static
